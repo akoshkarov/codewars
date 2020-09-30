@@ -1,0 +1,15 @@
+incorrect tests:
+
+<a href="http://tinypic.com?ref=ou7fbo" target="_blank"><img src="http://i65.tinypic.com/ou7fbo.png" border="0" alt="Image and video hosting by TinyPic"></a>
+My solution should pass all checks:
+<pre>
+function sortArray(arr) {
+    let odd = arr
+        .filter(v => v % 2)
+        .sort((x, y) => x >= y);
+    return arr
+        .reverse()
+        .map(v => (v % 2 === 0) ? v : odd.pop())
+        .reverse();
+}
+</pre>
