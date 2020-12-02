@@ -76,25 +76,6 @@ var Calculator = function () {
         var divisionPosition;
         var intermediateResult;
         while (typeof result !== "string") {
-            // handle multiply
-            multiplyPosition = result.indexOf(multiply);
-            if (multiplyPosition !== -1) {
-                intermediateResult = (
-                    +result[multiplyPosition - 1] *
-                    +result[multiplyPosition + 1]
-                ).toString();
-                if (result.length === 3) {
-                    // no calculations left except current
-                    result = intermediateResult;
-                } else {
-                    result = [
-                        ...result.slice(0, multiplyPosition - 1),
-                        intermediateResult,
-                        ...result.slice(multiplyPosition + 2),
-                    ];
-                }
-                continue;
-            }
             // handle division
             divisionPosition = result.indexOf(division);
             if (divisionPosition !== -1) {
@@ -111,6 +92,25 @@ var Calculator = function () {
                         ...result.slice(0, divisionPosition - 1),
                         intermediateResult,
                         ...result.slice(divisionPosition + 2),
+                    ];
+                }
+                continue;
+            }
+            // handle multiply
+            multiplyPosition = result.indexOf(multiply);
+            if (multiplyPosition !== -1) {
+                intermediateResult = (
+                    +result[multiplyPosition - 1] *
+                    +result[multiplyPosition + 1]
+                ).toString();
+                if (result.length === 3) {
+                    // no calculations left except current
+                    result = intermediateResult;
+                } else {
+                    result = [
+                        ...result.slice(0, multiplyPosition - 1),
+                        intermediateResult,
+                        ...result.slice(multiplyPosition + 2),
                     ];
                 }
                 continue;
@@ -145,17 +145,17 @@ var Calculator = function () {
 };
 var calculate = new Calculator();
 var arguments = [
-    // ["127", 127],
-    // ["2 + 3", 5],
-    // ["2 - 3 - 4", -5],
-    // ["10 * 5 / 2", 25],
-    // ["2 / 2 + 3 * 4 - 6", 7],
-    // ["( 1 + 2 * 3 ) - 5 / 5", 6],
-    // ["( 12 + ( 2 * 3 ) - 1 ) + 4", 21],
-    // [
-    //     "( 12 + ( 2 * 3 ) - 1 ) + 4 * ( 2 - 1 * ( 3 - 2 ) ) / ( 4 * 4 / 4 ) + 2",
-    //     20,
-    // ],
+    ["127", 127],
+    ["2 + 3", 5],
+    ["2 - 3 - 4", -5],
+    ["10 * 5 / 2", 25],
+    ["2 / 2 + 3 * 4 - 6", 7],
+    ["( 1 + 2 * 3 ) - 5 / 5", 6],
+    ["( 12 + ( 2 * 3 ) - 1 ) + 4", 21],
+    [
+        "( 12 + ( 2 * 3 ) - 1 ) + 4 * ( 2 - 1 * ( 3 - 2 ) ) / ( 4 * 4 / 4 ) + 2",
+        20,
+    ],
     ["2 + 3 * 4 / 3 - 6 / 3 * 3 + 8", 8],
 ];
 arguments.forEach(function (_a) {
