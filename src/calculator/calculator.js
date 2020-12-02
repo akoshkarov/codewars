@@ -96,6 +96,9 @@ var Calculator = function () {
                 }
                 continue;
             }
+            break;
+        }
+        while (typeof result !== "string") {
             // handle multiply
             multiplyPosition = result.indexOf(multiply);
             if (multiplyPosition !== -1) {
