@@ -1,14 +1,14 @@
 // https://www.codewars.com/kata/5235c913397cbf2508000048/train/javascript
 
-const plus = "+";
-const minus = "-";
+const addition = "+";
+const subtraction = "-";
 const multiply = "*";
 const division = "/";
 const openBracket = "(";
 const closeBracket = ")";
 
-class Calculator {
-    evaluate(value: string): number {
+const Calculator = function () {
+    this.evaluate = (value: string): number => {
         if (!value) return 0;
 
         if (value.indexOf(" ") === -1) {
@@ -28,9 +28,9 @@ class Calculator {
         }
 
         return +result;
-    }
+    };
 
-    calculate(parts: string[]): string | string[] {
+    this.calculate = (parts: string[]): string | string[] => {
         let openBracketIndex = parts.indexOf(openBracket);
         let bracketGroup: {
             openBracketPosition: number;
@@ -62,12 +62,12 @@ class Calculator {
             // we do not have brackets
             return this.calculateWithoutBrackets(parts);
         }
-    }
+    };
 
-    findBracketGroupToCalculate(
+    this.findBracketGroupToCalculate = (
         startingPosition: number,
         parts: string[]
-    ): { openBracketPosition: number; closeBracketPosition: number } {
+    ): { openBracketPosition: number; closeBracketPosition: number } => {
         let openBracketPosition = startingPosition;
         let closeBracketPosition;
 
@@ -88,9 +88,9 @@ class Calculator {
         }
 
         return { openBracketPosition, closeBracketPosition };
-    }
+    };
 
-    calculateWithoutBrackets(parts: string[]): string {
+    this.calculateWithoutBrackets = (parts: string[]): string => {
         let result: string | string[] = parts;
 
         let multiplyPosition: number;
@@ -147,7 +147,7 @@ class Calculator {
 
         // handle addition and subtraction
         while (typeof result !== "string") {
-            if (result[1] === plus) {
+            if (result[1] === addition) {
                 intermediateResult = (+result[0] + +result[2]).toString();
 
                 if (result.length === 3) {
@@ -159,7 +159,7 @@ class Calculator {
                 continue;
             }
 
-            if (result[1] === minus) {
+            if (result[1] === subtraction) {
                 intermediateResult = (+result[0] - +result[2]).toString();
 
                 if (result.length === 3) {
@@ -173,8 +173,8 @@ class Calculator {
         }
 
         return result;
-    }
-}
+    };
+};
 
 var calculate = new Calculator();
 let arguments = [

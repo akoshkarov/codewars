@@ -4,8 +4,9 @@
     "description": "https://www.codewars.com/",
     "main": "index.js",
     "scripts": {
-        "test": "nodemon src/calculator.ts",
-        "build": "tsc src/calculator.ts"
+        "test": "nodemon src/calculator/calculator.ts",
+        "build": "tsc src/calculator/calculator.ts",
+        "run": "nodemon src/calculator/calculator.js"
     },
     "repository": {
         "type": "git",
